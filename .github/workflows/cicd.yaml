@@ -44,7 +44,7 @@ jobs:
           echo "${{ secrets.KUBECONFIG }}" > /tmp/.kube/config
           echo "KUBECONFIG=/tmp/.kube/config" >> $GITHUB_ENV
       - name: 'Currently running services'
-        run: kubectl -n free-ns get pods
+        run: kubectl -n default get pods
       - name: Login to Docker registry
         uses: docker/login-action@v1
         with:
@@ -59,7 +59,7 @@ jobs:
       - name: Deploy to K8S
         run: |
           sed -i 's/<DOCKER_OBJECT_STORAGE_NAMESPACE>/${{ secrets.DOCKER_OBJECT_STORAGE_NAMESPACE }}/g' app/k8s-deployment.yaml
-          kubectl -n free-ns apply -f app/k8s-deployment.yaml
+          kubectl -n default apply -f app/k8s-deployment.yaml
       - name: Restart nginx
         run: |
-          kubectl -n free-ns rollout restart deployment nginx
+          kubectl -n default rollout restart deployment nginx
