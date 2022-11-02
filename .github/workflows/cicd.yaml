@@ -38,7 +38,7 @@ jobs:
       - name: 'Install kubectl'
         run: |
           mkdir /tmp/.kube
-          curl -L -O "https://dl.k8s.io/release/v1.22.4/bin/linux/amd64/kubectl" -o kubectl
+          curl -L -O "https://dl.k8s.io/v1.22.15/bin/linux/arm64/kubectl" -o kubectl
           chmod +x kubectl
           mv kubectl /usr/local/bin
           echo "${{ secrets.KUBECONFIG }}" > /tmp/.kube/config
