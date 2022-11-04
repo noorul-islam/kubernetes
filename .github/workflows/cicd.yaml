@@ -46,8 +46,8 @@ jobs:
           kubectl version --client
       - name: 'Currently running services'
         run: |
-             kubectl -n free-ns get pods
-             echo " kubectl -n free-ns get pods is COMPLETED"
+             kubectl -n kube-system get pods
+             echo " kubectl -n kube-system get pods is COMPLETED"
       - name: Login to Docker registry
         uses: docker/login-action@v1
         with:
