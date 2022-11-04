@@ -37,10 +37,10 @@ jobs:
           oci setup repair-file-permissions --file /home/runner/.oci/oci_api_key.pem
       - name: 'Install kubectl'
         run: |
+          mkdir -p /tmp/.kube
           curl -LO "https://dl.k8s.io/release/v1.22.4/bin/linux/amd64/kubectl"
           chmod +x kubectl
-          mkdir -p ~/.local/bin
-          mv ./kubectl ~/.local/bin/kubectl
+          mv kubectl /usr/local/bin
           echo "${{ secrets.KUBE_CONFIG }}" > /tmp/.kube/config
           echo "KUBE_CONFIG=/tmp/.kube/config" >> $GITHUB_ENV
           kubectl version --client
