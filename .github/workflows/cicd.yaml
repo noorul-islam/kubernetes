@@ -38,14 +38,14 @@ jobs:
       - name: 'Install kubectl'
         run: |
           mkdir /tmp/.kube
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -o yaml
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -o kubectl
           chmod +x kubectl
           mv kubectl /usr/local/bin
           echo "${{ secrets.KUBECONFIG }}" > /tmp/.kube/config
           echo "KUBECONFIG=/tmp/.kube/config" >> $GITHUB_ENV
           kubectl version --client
       - name: 'Currently running services'
-        run: echo " kubectl -n free-ns get pods is STARTED"
+        run: |
              kubectl -n free-ns get pods
              echo " kubectl -n free-ns get pods is COMPLETED"
       - name: Login to Docker registry
