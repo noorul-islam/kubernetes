@@ -40,7 +40,6 @@ jobs:
           mkdir ~/.kube
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -o kubectl
           chmod +x kubectl
-          chmod go-r ~/.kube/config
 
           echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
           echo "KUBECONFIG=~/.kube/config" >> $GITHUB_ENV
