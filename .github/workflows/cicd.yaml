@@ -46,6 +46,7 @@ jobs:
           kubectl version --client
       - name: 'Currently running services'
         run: |
+             echo "environment-kubeconfig:" ${KUBECONFIG}
              kubectl -n free-ns get pods
              echo " kubectl -n free-ns get pods is COMPLETED"
       - name: Login to Docker registry
